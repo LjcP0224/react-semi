@@ -83,7 +83,7 @@ axios.interceptors.response.use(
     // 统一错误提示
     Toast.error({
       content: errorMessage,
-      duration: 5 * 1000
+      duration: 3
     })
 
     return Promise.reject(error)

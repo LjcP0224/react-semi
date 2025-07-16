@@ -1,17 +1,20 @@
 import { createBrowserRouter } from 'react-router'
-// import { startNProgress, doneNProgress } from '@/utils/nprogress'
+
+import { lazy } from 'react'
 
 import { appRoutes } from './routes/index'
 
-const router = createBrowserRouter([...appRoutes])
-
-// router.subscribe((state) => {
-//   console.log('state ==>', state)
-//   if (state.navigation.state == 'idle') {
-//     doneNProgress()
-//   } else {
-//     startNProgress()
-//   }
-// })
+const router = createBrowserRouter([
+  ...appRoutes,
+  {
+    Component: lazy(() => import('@/layout/index')),
+    children: [
+      {
+        path: '*',
+        Component: lazy(() => import('@/views/not-found/index'))
+      }
+    ]
+  }
+])
 
 export default router
