@@ -1,20 +1,8 @@
 import { createBrowserRouter } from 'react-router'
 
-import { lazy } from 'react'
-
 import { appRoutes } from './routes/index'
+import BaseRouter from './routes/base'
 
-const router = createBrowserRouter([
-  ...appRoutes,
-  {
-    Component: lazy(() => import('@/layout/index')),
-    children: [
-      {
-        path: '*',
-        Component: lazy(() => import('@/views/not-found/index'))
-      }
-    ]
-  }
-])
+const router = createBrowserRouter([...appRoutes, ...BaseRouter])
 
 export default router

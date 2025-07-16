@@ -1,7 +1,7 @@
 import { lazy } from 'react'
 import type { RouteObject } from 'react-router'
 
-const Login: RouteObject = {
+const Home: RouteObject = {
   Component: lazy(() => import('@/layout/index')),
   children: [
     {
@@ -11,4 +11,4 @@ const Login: RouteObject = {
   ]
 }
 
-export default Login
+export default Home
