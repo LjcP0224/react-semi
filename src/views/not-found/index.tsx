@@ -1,8 +1,9 @@
 import React from 'react'
-import { Button } from '@douyinfe/semi-ui'
+import { Button, Lottie } from '@douyinfe/semi-ui'
 import { IconArrowLeft } from '@douyinfe/semi-icons'
 import { useNavigate } from 'react-router'
-import './index.css'
+
+import animationData from '@/views/not-found/Racooon-404.json'
 
 const NotFoundPage: React.FC = () => {
   const navigate = useNavigate()
@@ -12,18 +13,17 @@ const NotFoundPage: React.FC = () => {
   }
 
   return (
-    <div className="not-found-container">
-      <div className="glowing-text">404</div>
-      <div className="message">页面未找到</div>
-      <div className="scanner"></div>
-      <Button
-        icon={<IconArrowLeft />}
-        onClick={handleGoBack}
-        style={{
-          marginTop: '2rem',
-          backgroundColor: '#64b5f6',
-          color: 'white'
-        }}>
+    <div className=" w-full h-full min-h-screen flex justify-center items-center flex-col">
+      <div className="w-96 h-96">
+        <Lottie
+          params={{
+            animationData: animationData
+          }}
+          width="100%"
+          height="100%"
+        />
+      </div>
+      <Button icon={<IconArrowLeft />} onClick={handleGoBack} type="primary">
         返回上一级
       </Button>
     </div>
