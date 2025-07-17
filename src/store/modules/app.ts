@@ -4,11 +4,13 @@ import { createSlice } from '@reduxjs/toolkit'
 interface AppState {
   isLoading: boolean
   local: 'zh_CN' | 'en_US'
+  theme: 'light' | 'dark'
 }
 
 const initialState: AppState = {
   isLoading: false,
-  local: 'zh_CN'
+  local: 'zh_CN',
+  theme: 'light'
 }
 
 const appSlice = createSlice({
