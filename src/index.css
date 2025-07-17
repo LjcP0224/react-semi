@@ -21,4 +21,6 @@ body {
   height: 100%;
   min-height: 100vh;
   box-sizing: border-box;
+  color: var(--semi-color-text-0);
+  background-color: var(--semi-color-bg-0);
 }
