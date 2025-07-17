@@ -1,9 +1,10 @@
-import { Form, Button } from '@douyinfe/semi-ui'
+import { Form, Button, Lottie } from '@douyinfe/semi-ui'
 import { IconUserCircle, IconLock } from '@douyinfe/semi-icons'
 import { login } from '@/api/user'
 import type { LoginParams } from '@/api/user'
 import React from 'react'
 
+import animationData from '@/views/login/Frankenstein.json'
 
 const LoginForm = () => {
   const handleSubmit = (
@@ -20,11 +21,17 @@ const LoginForm = () => {
 
   return (
     <div className="w-full h-full min-h-screen flex justify-center items-center">
-      <div className=" border border-[var(--semi-color-fill-0)] flex justify-center items-center ">
+      <div className="border border-[--semi-color-border)] flex justify-center items-center ">
         <div className="w-96 h-96">
-          一个登录页
+          <Lottie
+            params={{
+              animationData: animationData
+            }}
+            width="100%"
+            height="100%"
+          />
         </div>
-        <div className=" p-6">
+        <div className="p-6">
           <h1 className=" text-center font-bold text-3xl">LOGIN</h1>
           <Form onSubmit={handleSubmit}>
             <Form.Input
