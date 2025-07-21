@@ -15,7 +15,6 @@ const resources = {
   'en-US': { translation: { ...en } },
   'zh-CN': { translation: { ...cn } }
 }
-console.log('resources ==> ', resources)
 
 i18n.use(initReactI18next).init({
   resources,
