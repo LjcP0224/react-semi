@@ -1,22 +1,22 @@
-import { assign, isObject } from 'lodash';
+import { assign, isObject } from 'es-toolkit/compat'
 
-const modules = import.meta.glob('./modules/*.ts', { eager: true });
+const modules = import.meta.glob('./modules/*.ts', { eager: true })
 const pageLocale = import.meta.glob('@/**/*.zh.ts', {
-  eager: true,
-});
+  eager: true
+})
 
 function formatModules(_modules: any, result: Record<string, string>) {
   Object.keys(_modules).forEach((key) => {
-    const defaultModule = _modules[key].default;
-    if (!defaultModule) return;
-    const moduleList = isObject(defaultModule) ? { ...defaultModule } : {};
-    assign(result, moduleList);
-  });
-  return result;
+    const defaultModule = _modules[key].default
+    if (!defaultModule) return
+    const moduleList = isObject(defaultModule) ? { ...defaultModule } : {}
+    assign(result, moduleList)
+  })
+  return result
 }
 
-export const zh: Record<string, string> = formatModules(modules, {});
-export const pageZh: Record<string, string> = formatModules(pageLocale, {});
-console.log('pageLocale&&pageZh ==> ', pageLocale, pageZh);
+export const zh: Record<string, string> = formatModules(modules, {})
+export const pageZh: Record<string, string> = formatModules(pageLocale, {})
+console.log('pageLocale&&pageZh ==> ', pageLocale, pageZh)
 
-export default { ...zh, ...pageZh };
+export default { ...zh, ...pageZh }
