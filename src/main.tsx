@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { store } from '@/store/index'
 import { Provider } from 'react-redux'
 
+import '@/locale'
 import '@/config/axios'
 import './index.css'
 
