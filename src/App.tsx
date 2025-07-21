@@ -29,7 +29,6 @@ function App() {
   const fetchUserInfo = () => {
     getUserInfo().then((res) => {
       const { result } = res.data
-      console.log('result', result)
       localStorage.setItem('userInfo', JSON.stringify(result))
     })
   }

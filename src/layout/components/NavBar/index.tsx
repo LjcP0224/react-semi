@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { Layout, Nav, Avatar, Button } from '@douyinfe/semi-ui'
-import { IconSun, IconMoon ,IconLanguage } from '@douyinfe/semi-icons'
+import { IconSun, IconMoon, IconLanguage } from '@douyinfe/semi-icons'
 import { GlobalContext } from '@/context'
 
 function NavBar({ show }: { show: boolean }) {
