@@ -4,6 +4,9 @@ import { RouterProvider } from 'react-router'
 import zh_CN from '@douyinfe/semi-ui/lib/es/locale/source/zh_CN'
 import en_US from '@douyinfe/semi-ui/lib/es/locale/source/en_US'
 
+import { getToken } from '@/utils/auth'
+import { getUserInfo } from '@/api/user'
+
 import useStorage from './utils/useStorage'
 import router from '@/router/index.ts'
 import './App.css'
@@ -22,6 +25,23 @@ function App() {
       document.body.removeAttribute('theme-mode')
     }
   }, [theme])
+
+  const fetchUserInfo = () => {
+    getUserInfo().then((res) => {
+      const { result } = res.data
+      console.log('result', result)
+      localStorage.setItem('userInfo', JSON.stringify(result))
+    })
+  }
+
+  useEffect(() => {
+    if (getToken()) {
+      fetchUserInfo()
+      router.navigate('/')
+    } else if (window.location.pathname.replace(/\//g, '') !== 'login') {
+      window.location.pathname = '/login'
+    }
+  }, [])
 
   return (
     <>
