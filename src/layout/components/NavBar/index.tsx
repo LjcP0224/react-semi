@@ -1,6 +1,11 @@
-import { Layout, Nav, Avatar } from '@douyinfe/semi-ui'
+import { useContext } from 'react'
+import { Layout, Nav, Avatar, Button } from '@douyinfe/semi-ui'
+import { IconSun, IconMoon ,IconLanguage } from '@douyinfe/semi-icons'
+import { GlobalContext } from '@/context'
 
 function NavBar({ show }: { show: boolean }) {
+  const { setLang, lang, theme, setTheme } = useContext(GlobalContext)
+
   if (!show) {
     return <div className=" fixed right-0 bottom-52 z-50"></div>
   }
@@ -10,6 +15,18 @@ function NavBar({ show }: { show: boolean }) {
       <Nav mode="horizontal">
         <Nav.Header>NYMJ</Nav.Header>
         <Nav.Footer>
+          <Button
+            theme="borderless"
+            icon={<IconLanguage />}
+            onClick={() =>
+              setLang && setLang(lang === 'zh_CN' ? 'en_US' : 'zh_CN')
+            }></Button>
+          <Button
+            theme="borderless"
+            icon={theme == 'dark' ? <IconMoon /> : <IconSun />}
+            onClick={() =>
+              setTheme && setTheme(theme === 'light' ? 'dark' : 'light')
+            }></Button>
           <Avatar>HT</Avatar>
         </Nav.Footer>
       </Nav>
