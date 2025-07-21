@@ -1,22 +1,24 @@
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 
+import en from './en-US'
+import cn from './zh-CN'
+
+export const LOCALE_OPTIONS = [
+  { label: '中文', value: 'zh-CN' },
+  { label: 'English', value: 'en-US' }
+]
+
+export const defaultLocale = localStorage.getItem('lang') || 'zh-CN'
+
 const resources = {
-  en: {
-    translation: {
-      welcome: 'Welcome to React'
-    }
-  },
-  zh: {
-    translation: {
-      welcome: '欢迎使用 React'
-    }
-  }
+  'en-US': en,
+  'zh-CN': cn
 }
 
 i18n.use(initReactI18next).init({
   resources,
-  lng: 'en',
+  lng: defaultLocale,
   interpolation: {
     escapeValue: false
   }

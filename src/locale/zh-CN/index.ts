@@ -1,0 +1,22 @@
+import { assign, isObject } from 'lodash';
+
+const modules = import.meta.glob('./modules/*.ts', { eager: true });
+const pageLocale = import.meta.glob('@/**/*.zh.ts', {
+  eager: true,
+});
+
+function formatModules(_modules: any, result: Record<string, string>) {
+  Object.keys(_modules).forEach((key) => {
+    const defaultModule = _modules[key].default;
+    if (!defaultModule) return;
+    const moduleList = isObject(defaultModule) ? { ...defaultModule } : {};
+    assign(result, moduleList);
+  });
+  return result;
+}
+
+export const zh: Record<string, string> = formatModules(modules, {});
+export const pageZh: Record<string, string> = formatModules(pageLocale, {});
+console.log('pageLocale&&pageZh ==> ', pageLocale, pageZh);
+
+export default { ...zh, ...pageZh };
