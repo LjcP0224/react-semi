@@ -8,8 +8,11 @@ import { useNavigate } from 'react-router'
 import { setToken } from '@/utils/auth'
 
 import animationData from '@/views/login/Frankenstein.json'
+import { useTranslation } from 'react-i18next'
 
 const LoginForm = () => {
+  const { t } = useTranslation()
+
   const navigate = useNavigate()
   const [formValue, setFormValue] = useState<LoginParams>({
     username: '',
@@ -107,7 +110,7 @@ const LoginForm = () => {
             </div>
 
             <Button block htmlType="submit">
-              Login
+              {t('login.loginButton')}
             </Button>
           </Form>
         </div>

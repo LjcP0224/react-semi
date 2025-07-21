@@ -12,9 +12,10 @@ export const LOCALE_OPTIONS = [
 export const defaultLocale = localStorage.getItem('lang') || 'zh-CN'
 
 const resources = {
-  'en-US': en,
-  'zh-CN': cn
+  'en-US': { translation: { ...en } },
+  'zh-CN': { translation: { ...cn } }
 }
+console.log('resources ==> ', resources)
 
 i18n.use(initReactI18next).init({
   resources,
