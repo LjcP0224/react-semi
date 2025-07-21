@@ -3,14 +3,10 @@ import { createSlice } from '@reduxjs/toolkit'
 
 interface AppState {
   isLoading: boolean
-  local: 'zh_CN' | 'en_US'
-  theme: 'light' | 'dark'
 }
 
 const initialState: AppState = {
-  isLoading: false,
-  local: 'zh_CN',
-  theme: 'light'
+  isLoading: false
 }
 
 const appSlice = createSlice({
@@ -19,12 +15,9 @@ const appSlice = createSlice({
   reducers: {
     setIsLoading(state, action: PayloadAction<boolean>) {
       state.isLoading = action.payload
-    },
-    setLocal(state, action: PayloadAction<'zh_CN' | 'en_US'>) {
-      state.local = action.payload
     }
   }
 })
 
-export const { setIsLoading, setLocal } = appSlice.actions
+export const { setIsLoading } = appSlice.actions
 export default appSlice.reducer
