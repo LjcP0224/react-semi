@@ -1,65 +1,65 @@
-import { Form, Button, Lottie, Toast } from '@douyinfe/semi-ui'
-import { IconUserCircle, IconLock } from '@douyinfe/semi-icons'
-import { login } from '@/api/user'
-import { getCaptchaImg } from '@/api/system'
-import type { LoginParams } from '@/api/user'
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router'
-import { setToken } from '@/utils/auth'
+import { Form, Button, Lottie, Toast } from "@douyinfe/semi-ui";
+import { IconUserCircle, IconLock } from "@douyinfe/semi-icons";
+import { login } from "@/api/user";
+import { getCaptchaImg } from "@/api/system";
+import type { LoginParams } from "@/api/user";
+import { useState } from "react";
+import { useNavigate } from "react-router";
+import { setToken } from "@/utils/auth";
 
-import animationData from '@/views/login/Frankenstein.json'
-import { useTranslation } from 'react-i18next'
-import { useMount } from 'ahooks'
+import animationData from "@/views/login/Frankenstein.json";
+import { useTranslation } from "react-i18next";
+import { useMount } from "ahooks";
 
 const LoginForm = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [formValue, setFormValue] = useState<LoginParams>({
-    username: '',
-    password: '',
-    code: '',
-    uuid: ''
-  })
+    username: "",
+    password: "",
+    code: "",
+    uuid: "",
+  });
 
-  const [captchaImage, setCaptchaImage] = useState('')
+  const [captchaImage, setCaptchaImage] = useState("");
 
   const handleSubmit = (values: LoginParams) => {
     login({
       ...values,
-      uuid: formValue.uuid
+      uuid: formValue.uuid,
     })
       .then((res) => {
-        const { code, message, result } = res.data
+        const { code, message, result } = res.data;
         if (code == 200) {
-          setToken(result.token)
-          navigate('/')
+          setToken(result.token);
+          navigate("/");
         } else {
-          Toast.error(message)
+          Toast.error(message);
         }
       })
       .catch(() => {
-        getCaptcha()
-      })
-  }
+        getCaptcha();
+      });
+  };
 
   const getCaptcha = async () => {
     try {
-      const res = await getCaptchaImg()
-      const { result } = res.data
-      setCaptchaImage(`data:image/png;base64,${result.img}`)
+      const res = await getCaptchaImg();
+      const { result } = res.data;
+      setCaptchaImage(`data:image/png;base64,${result.img}`);
       setFormValue((prev) => ({
         ...prev,
-        uuid: result.uuid
-      }))
+        uuid: result.uuid,
+      }));
     } catch {
-      Toast.error('获取验证码失败')
+      Toast.error("获取验证码失败");
     }
-  }
+  };
 
   useMount(() => {
-    getCaptcha()
-  })
+    getCaptcha();
+  });
 
   return (
     <div className="w-full h-full min-h-screen flex justify-center items-center">
@@ -67,7 +67,7 @@ const LoginForm = () => {
         <div className="w-96 h-96">
           <Lottie
             params={{
-              animationData: animationData
+              animationData: animationData,
             }}
             width="100%"
             height="100%"
@@ -82,7 +82,8 @@ const LoginForm = () => {
               noLabel
               placeholder="请输入用户名"
               initValue=""
-              field="username"></Form.Input>
+              field="username"
+            ></Form.Input>
             <Form.Input
               label="密码"
               prefix={<IconLock />}
@@ -90,7 +91,8 @@ const LoginForm = () => {
               placeholder="请输入密码"
               field="password"
               initValue=""
-              mode="password"></Form.Input>
+              mode="password"
+            ></Form.Input>
 
             <div className="flex gap-2 items-center">
               <Form.Input
@@ -98,11 +100,13 @@ const LoginForm = () => {
                 noLabel
                 placeholder="请输入验证码"
                 field="code"
-                initValue=""></Form.Input>
+                initValue=""
+              ></Form.Input>
 
               <div
                 className="cursor-pointer rounded border"
-                onClick={getCaptcha}>
+                onClick={getCaptcha}
+              >
                 <img
                   className="h-[30px] w-[100px] object-cover"
                   src={captchaImage}
@@ -111,13 +115,13 @@ const LoginForm = () => {
             </div>
 
             <Button block htmlType="submit">
-              {t('login.loginButton')}
+              {t("login.loginButton")}
             </Button>
           </Form>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default LoginForm
+export default LoginForm;
