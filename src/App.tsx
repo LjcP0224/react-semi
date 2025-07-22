@@ -1,21 +1,19 @@
-import { ConfigProvider } from "@douyinfe/semi-ui";
+import { useEffect } from "react";
 import { RouterProvider } from "react-router";
+import { ConfigProvider } from "@douyinfe/semi-ui";
 import { useLocalStorageState } from "ahooks";
-
-import zh_CN from "@douyinfe/semi-ui/lib/es/locale/source/zh_CN";
-import en_US from "@douyinfe/semi-ui/lib/es/locale/source/en_US";
-
-import { getToken } from "@/utils/auth";
-import { getUserInfo } from "@/api/user";
 
 import { useTranslation } from "react-i18next";
 import { defaultLocale } from "@/locale";
+import zh_CN from "@douyinfe/semi-ui/lib/es/locale/source/zh_CN";
+import en_US from "@douyinfe/semi-ui/lib/es/locale/source/en_US";
 
 import router from "@/router/index.ts";
-import "./App.css";
-import { useEffect } from "react";
 
+import { getToken } from "@/utils/auth";
+import { getUserInfo } from "@/api/user";
 import { GlobalContext } from "./context";
+import "./App.css";
 
 function App() {
   const [lang, setLang] = useLocalStorageState("lang", {
