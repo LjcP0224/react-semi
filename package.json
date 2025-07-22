@@ -7,8 +7,7 @@
     "dev": "vite --config ./config/vite.config.dev.ts",
     "build": "tsc -b && vite build --config ./config/vite.config.prod.ts",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "test": "vitest --config ./config/vite.config.dev.ts"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@douyinfe/semi-icons": "^2.83.0",
@@ -30,15 +29,21 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.30.1",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "@types/jest": "^30.0.0",
     "@types/node": "^24.0.13",
     "@types/nprogress": "^0.2.3",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
     "@vitejs/plugin-react-swc": "^3.10.2",
+    "@vitest/coverage-v8": "^3.2.4",
+    "@vitest/ui": "^3.2.4",
     "eslint": "^9.30.1",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^16.3.0",
+    "jsdom": "^26.1.0",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.35.1",
     "vite": "^7.0.4",

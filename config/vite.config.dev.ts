@@ -8,6 +8,11 @@ const devConfig = defineConfig({
   mode: 'development',
   server: {
     host: true
+  },
+  test: {
+    coverage: {
+      reporter: ['text', 'json', 'html']
+    }
   }
 }) satisfies UserConfig
 
