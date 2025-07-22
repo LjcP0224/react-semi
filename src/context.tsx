@@ -5,4 +5,9 @@ export const GlobalContext = createContext<{
   setLang?: (value: string) => void
   theme?: string
   setTheme?: (value: string) => void
-}>({})
+}>({
+  lang: 'zh-CN',
+  setLang: (lang: string) => {},
+  theme: 'light',
+  setTheme: (theme: string) => {},
+})
