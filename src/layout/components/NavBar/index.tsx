@@ -19,7 +19,7 @@ function NavBar({ show }: { show: boolean }) {
             theme="borderless"
             icon={<IconLanguage />}
             onClick={() =>
-              setLang && setLang(lang === 'zh_CN' ? 'en_US' : 'zh_CN')
+              setLang && setLang(lang === 'zh-CN' ? 'en-US' : 'zh-CN')
             }></Button>
           <Button
             theme="borderless"
