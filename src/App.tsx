@@ -1,5 +1,6 @@
 import { ConfigProvider } from '@douyinfe/semi-ui'
 import { RouterProvider } from 'react-router'
+import { useLocalStorageState } from 'ahooks'
 
 import zh_CN from '@douyinfe/semi-ui/lib/es/locale/source/zh_CN'
 import en_US from '@douyinfe/semi-ui/lib/es/locale/source/en_US'
@@ -9,7 +10,6 @@ import { getUserInfo } from '@/api/user'
 
 import { defaultLocale } from '@/locale'
 
-import useStorage from './utils/useStorage'
 import router from '@/router/index.ts'
 import './App.css'
 import { useEffect } from 'react'
@@ -17,8 +17,14 @@ import { useEffect } from 'react'
 import { GlobalContext } from './context'
 
 function App() {
-  const [lang, setLang] = useStorage('lang', defaultLocale)
-  const [theme, setTheme] = useStorage('theme', 'light')
+  const [lang, setLang] = useLocalStorageState('lang', {
+    defaultValue: defaultLocale,
+    listenStorageChange: true
+  })
+  const [theme, setTheme] = useLocalStorageState('theme', {
+    defaultValue: 'light',
+    listenStorageChange: true
+  })
 
   useEffect(() => {
     if (theme === 'dark') {

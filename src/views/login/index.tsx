@@ -3,12 +3,13 @@ import { IconUserCircle, IconLock } from '@douyinfe/semi-icons'
 import { login } from '@/api/user'
 import { getCaptchaImg } from '@/api/system'
 import type { LoginParams } from '@/api/user'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router'
 import { setToken } from '@/utils/auth'
 
 import animationData from '@/views/login/Frankenstein.json'
 import { useTranslation } from 'react-i18next'
+import { useMount } from 'ahooks'
 
 const LoginForm = () => {
   const { t } = useTranslation()
@@ -42,7 +43,7 @@ const LoginForm = () => {
       })
   }
 
-  const getCaptcha = useCallback(async () => {
+  const getCaptcha = async () => {
     try {
       const res = await getCaptchaImg()
       const { result } = res.data
@@ -54,11 +55,11 @@ const LoginForm = () => {
     } catch {
       Toast.error('获取验证码失败')
     }
-  }, [])
+  }
 
-  useEffect(() => {
+  useMount(() => {
     getCaptcha()
-  }, [getCaptcha])
+  })
 
   return (
     <div className="w-full h-full min-h-screen flex justify-center items-center">
