@@ -7,7 +7,8 @@
     "dev": "vite --config ./config/vite.config.dev.ts",
     "build": "tsc -b && vite build --config ./config/vite.config.prod.ts",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest --config ./config/vite.config.dev.ts"
   },
   "dependencies": {
     "@douyinfe/semi-icons": "^2.83.0",
@@ -40,6 +41,7 @@
     "globals": "^16.3.0",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.35.1",
-    "vite": "^7.0.4"
+    "vite": "^7.0.4",
+    "vitest": "^3.2.4"
   }
 }
