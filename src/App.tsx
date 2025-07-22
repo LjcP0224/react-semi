@@ -38,13 +38,13 @@ function App() {
     getUserInfo().then((res) => {
       const { result } = res.data
       localStorage.setItem('userInfo', JSON.stringify(result))
+      router.navigate('/')
     })
   }
 
   useEffect(() => {
     if (getToken()) {
       fetchUserInfo()
-      router.navigate('/')
     } else if (window.location.pathname.replace(/\//g, '') !== 'login') {
       window.location.pathname = '/login'
     }
