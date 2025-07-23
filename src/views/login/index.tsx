@@ -12,6 +12,8 @@ import bgAnimation from '@/views/login/WaveLoop.json'
 import { useTranslation } from 'react-i18next'
 import { useMount } from 'ahooks'
 
+import Locale from '@/locale/locale'
+
 const LoginForm = () => {
   const { t } = useTranslation()
 
@@ -69,16 +71,15 @@ const LoginForm = () => {
 
   return (
     <div className="w-full h-full min-h-screen flex justify-center items-center semi-always-dark bg-[var(--semi-color-bg-0)] text-[var(--semi-color-text-0)]">
-      <div className="absolute top-0 right-0 left-0 bottom-0">
+      <div className="absolute top-0 right-0 left-0 bottom-0 flex justify-center items-center overflow-hidden">
         <Lottie
           params={{
             animationData: bgAnimation
           }}
           width="100%"
-          height="100%"
         />
       </div>
-      <div className="border border-[var(--semi-color-border)] flex justify-center items-center bg-[var(--semi-color-bg-1)] z-10">
+      <div className="border border-[var(--semi-color-border)] flex justify-center items-center bg-[var(--semi-color-bg-1)] z-10 relative">
         <div className="w-96 h-96">
           <Lottie
             params={{
@@ -89,29 +90,32 @@ const LoginForm = () => {
           />
         </div>
         <div className="p-6">
-          <h1 className="text-center font-bold text-3xl">LOGIN</h1>
+          <h1 className="text-center font-bold text-3xl">{t('login.title')}</h1>
           <Form onSubmit={handleSubmit}>
             <Form.Input
-              label="用户名"
               prefix={<IconUserCircle />}
               noLabel
-              placeholder="请输入用户名"
+              placeholder={t('login.username')}
               initValue=""
-              field="username"></Form.Input>
+              field="username"
+              rules={[
+                { required: true, message: t('login.invalidUsername') }
+              ]}></Form.Input>
             <Form.Input
-              label="密码"
               prefix={<IconLock />}
               noLabel
-              placeholder="请输入密码"
+              placeholder={t('login.password')}
               field="password"
               initValue=""
-              mode="password"></Form.Input>
+              mode="password"
+              rules={[
+                { required: true, message: t('login.invalidPassword') }
+              ]}></Form.Input>
 
             <div className="flex gap-2 items-center">
               <Form.Input
-                label="验证码"
                 noLabel
-                placeholder="请输入验证码"
+                placeholder={t('login.captchaPlaceholder')}
                 field="code"
                 initValue=""></Form.Input>
 
@@ -134,6 +138,10 @@ const LoginForm = () => {
               {t('login.loginButton')}
             </Button>
           </Form>
+        </div>
+
+        <div className=" absolute top-3 right-3">
+          <Locale />
         </div>
       </div>
     </div>
