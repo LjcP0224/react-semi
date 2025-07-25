@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@custom-variant dark (&:where([theme-mode=dark], [theme-mode=dark] *));
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
