@@ -7,6 +7,10 @@ import { useRouteProgress } from "@/hooks/useRouteProgress";
 import Navbar from "@/layout/components/NavBar";
 import { useEffect } from "react";
 
+const pageModules = import.meta.glob("@/**/*.en.ts", {
+  eager: true,
+});
+
 const LayoutPage = () => {
   useRouteProgress();
   const getRoutesData = () => {
@@ -26,7 +30,16 @@ const LayoutPage = () => {
         <Layout.Content>
           <Outlet />
         </Layout.Content>
-        <Layout.Footer>footer</Layout.Footer>
+        <Layout.Footer
+          className=" p-5 flex justify-between"
+          style={{
+            display: "flex",
+            color: "var(--semi-color-text-2)",
+            backgroundColor: "rgba(var(--semi-grey-0), 1)",
+          }}
+        >
+          Copyright © 2019 niuniushidai. All Rights Reserved.
+        </Layout.Footer>
       </Layout>
     </Layout>
   );
