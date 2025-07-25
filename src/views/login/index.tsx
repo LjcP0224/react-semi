@@ -7,8 +7,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { setToken } from "@/utils/auth";
 
-import animationData from "@/assets/lottie/DancingPallbearers.json";
-import bgAnimation from "@/assets/lottie//WaveLoop.json";
+import animationData from "@/assets/lottie/PepeStickerMusic.json";
 import { useTranslation } from "react-i18next";
 import { useMount } from "ahooks";
 
@@ -68,18 +67,17 @@ const LoginForm = () => {
   useMount(() => {
     getCaptcha();
   });
+  const css = {
+    backgroundImage: `url(${import.meta.env.VITE_LOGIN_BG})`,
+  };
 
   return (
-    <div className="w-full h-full min-h-screen flex justify-center items-center semi-always-dark bg-[var(--semi-color-bg-0)] text-[var(--semi-color-text-0)]">
-      <div className="absolute top-0 right-0 left-0 bottom-0 flex justify-center items-center overflow-hidden  bg-center bg-cover">
-        <Lottie
-          params={{
-            animationData: bgAnimation,
-          }}
-          width="100%"
-        />
-      </div>
-      <div className="flex justify-center items-center z-10 relative backdrop-blur-xs bg-black/20 dark:bg-white/20 border border-white/10 dark:border-black/10 shadow-lg">
+    <div className="semi-always-dark w-full h-full min-h-screen flex justify-center items-center bg-[var(--semi-color-bg-0)] text-[var(--semi-color-text-0)]">
+      <div
+        className={`absolute top-0 right-0 left-0 bottom-0 flex justify-center items-center overflow-hidden bg-center bg-cover`}
+        style={css}
+      ></div>
+      <div className="flex justify-center items-center z-10 relative backdrop-blur-xs bg-[var(--semi-color-bg-1)]/60  border border-[var(--semi-color-border)]  shadow-lg">
         <div className="w-96 h-96">
           <Lottie
             params={{
