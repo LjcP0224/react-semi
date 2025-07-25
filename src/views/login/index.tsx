@@ -3,7 +3,7 @@ import { IconUserCircle, IconLock } from "@douyinfe/semi-icons";
 import { login } from "@/api/user";
 import { getCaptchaImg } from "@/api/system";
 import type { LoginParams } from "@/api/user";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import { setToken } from "@/utils/auth";
 
@@ -67,7 +67,7 @@ const LoginForm = () => {
   useMount(() => {
     getCaptcha();
   });
-  const css = {
+  const css: React.CSSProperties = {
     backgroundImage: `url(${import.meta.env.VITE_LOGIN_BG})`,
   };
 
