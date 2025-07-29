@@ -83,6 +83,9 @@ const LoginForm = () => {
             params={{
               animationData: animationData,
             }}
+            getAnimationInstance={(instance) => {
+              instance?.setSpeed(0.3);
+            }}
             width="100%"
             height="100%"
           />
