@@ -10,6 +10,7 @@ import en_US from "@douyinfe/semi-ui/lib/es/locale/source/en_US";
 
 import { getToken } from "@/utils/auth";
 import { getUserInfo } from "@/api/user";
+import { useRouteProgress } from "@/hooks/useRouteProgress";
 
 import { GlobalContext } from "./context";
 import "./App.css";
@@ -49,6 +50,7 @@ const AuthGuard = ({ children }: { children: ReactNode }) => {
 };
 
 function App() {
+   useRouteProgress();
   const [lang, setLang] = useLocalStorageState("lang", {
     defaultValue: defaultLocale,
     listenStorageChange: true,
@@ -96,7 +98,7 @@ function App() {
         <ConfigProvider locale={lang === "zh-CN" ? zh_CN : en_US}>
           <AuthGuard>
             <Routes>
-              <Route path="/" element={<LayoutPage />} />
+              <Route path="/*" element={<LayoutPage />} />
               <Route path="/login" element={<Login />} />
             </Routes>
           </AuthGuard>

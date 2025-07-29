@@ -1,16 +1,15 @@
-import { useNavigationType, useNavigation } from 'react-router'
-import { startNProgress, doneNProgress } from '@/utils/nprogress'
-import { useEffect } from 'react'
+import { useLocation } from "react-router";
+import { startNProgress, doneNProgress } from "@/utils/nprogress";
+import { useEffect } from "react";
 
 export const useRouteProgress = () => {
-  const navigationType = useNavigationType()
-
+  const location = useLocation();
 
   useEffect(() => {
-    startNProgress()
-    if (navigationType) {
-      // 路由导航完成，结束 nprogress
-      doneNProgress()
+    startNProgress();
+    console.log("location.state ==> ", location.state);
+    if (location.state === null || location.state === undefined) {
+      doneNProgress();
     }
-  }, [navigationType])
-}
+  }, [location]);
+};

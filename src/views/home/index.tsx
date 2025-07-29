@@ -11,6 +11,7 @@ const HomePage = () => {
   return (
     <>
       <Button onClick={login}>Login</Button>
+      <Button onClick={() =>  navigate('/main')}>main</Button>
       <DatePicker />
     </>
   )
