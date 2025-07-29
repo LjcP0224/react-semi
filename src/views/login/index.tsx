@@ -4,7 +4,7 @@ import { login } from "@/api/user";
 import { getCaptchaImg } from "@/api/system";
 import type { LoginParams } from "@/api/user";
 import React, { useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate } from "@tanstack/react-router";
 import { setToken } from "@/utils/auth";
 
 import animationData from "@/assets/lottie/PepeStickerMusic.json";
