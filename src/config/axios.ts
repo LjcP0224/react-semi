@@ -1,7 +1,6 @@
 import axios from 'axios'
 import { Toast } from '@douyinfe/semi-ui'
 import { getToken, clearToken } from '@/utils/auth'
-import router from '@/router/index.ts'
 
 
 // 配置处理
@@ -24,7 +23,7 @@ class BusinessError extends Error {
 // Token过期处理 清除本地token并跳转登录页
 function handleTokenExpired() {
   clearToken()
-  router.navigate('/login')
+  window.location.pathname = '/login'
 }
 
 if (import.meta.env.VITE_API_BASE_URL) {
