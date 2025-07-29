@@ -4,13 +4,13 @@ import { useEffect } from 'react'
 
 export const useRouteProgress = () => {
   const navigationType = useNavigationType()
-  const navigation = useNavigation()
-  const navigationState = navigation.state
+
+
   useEffect(() => {
     startNProgress()
-    if (navigationState === 'idle') {
+    if (navigationType) {
       // 路由导航完成，结束 nprogress
       doneNProgress()
     }
-  }, [navigationType, navigationState])
+  }, [navigationType])
 }
