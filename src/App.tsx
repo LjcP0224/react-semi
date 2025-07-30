@@ -1,5 +1,6 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { Outlet, useNavigate } from "@tanstack/react-router";
+import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import { ConfigProvider, Spin } from "@douyinfe/semi-ui";
 import { useLocalStorageState } from "ahooks";
 
@@ -100,6 +101,7 @@ function App() {
         <ConfigProvider locale={lang === "zh-CN" ? zh_CN : en_US}>
           <AuthGuard>
             <Outlet />
+            <TanStackRouterDevtools />
           </AuthGuard>
         </ConfigProvider>
       </GlobalContext.Provider>
