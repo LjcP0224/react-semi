@@ -37,8 +37,9 @@ const LoginForm = () => {
         const { code, message, result } = res.data;
         if (code == 200) {
           setToken(result.token);
+
           navigate({
-            to: "/",
+            to: "/home",
           });
         } else {
           Toast.error(message);
