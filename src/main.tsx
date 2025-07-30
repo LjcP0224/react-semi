@@ -8,15 +8,14 @@ import i18n from "@/locale";
 import "@/config/axios";
 import "./index.css";
 
-import App from "./App";
-import { BrowserRouter } from "react-router";
+
+import { RouterProvider } from "@tanstack/react-router";
+import router from "./routes";
 
 createRoot(document.getElementById("root")!).render(
-  <BrowserRouter>
-    <I18nextProvider i18n={i18n}>
-      <Provider store={store}>
-        <App></App>
-      </Provider>
-    </I18nextProvider>
-  </BrowserRouter>
+  <I18nextProvider i18n={i18n}>
+    <Provider store={store}>
+      <RouterProvider router={router}></RouterProvider>
+    </Provider>
+  </I18nextProvider>
 );

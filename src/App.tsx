@@ -1,5 +1,5 @@
 import { useEffect, useState, type ReactNode } from "react";
-import { Routes, Route, useNavigate } from "react-router";
+import { Outlet, useNavigate } from "@tanstack/react-router";
 import { ConfigProvider, Spin } from "@douyinfe/semi-ui";
 import { useLocalStorageState } from "ahooks";
 
@@ -15,9 +15,6 @@ import { useRouteProgress } from "@/hooks/useRouteProgress";
 import { GlobalContext } from "./context";
 import "./App.css";
 
-import Login from "@/views/login";
-import LayoutPage from "@/layout";
-
 // 在单独的文件中创建路由守卫
 const AuthGuard = ({ children }: { children: ReactNode }) => {
   const navigate = useNavigate();
@@ -28,7 +25,9 @@ const AuthGuard = ({ children }: { children: ReactNode }) => {
       .then((res) => {
         const { result } = res.data;
         localStorage.setItem("userInfo", JSON.stringify(result));
-        navigate("/");
+        navigate({
+          to: "/",
+        });
       })
       .finally(() => {
         setLoading(false);
@@ -39,7 +38,10 @@ const AuthGuard = ({ children }: { children: ReactNode }) => {
     if (getToken()) {
       fetchUserInfo();
     } else if (!window.location.pathname.includes("/login")) {
-      navigate("/login");
+      navigate({
+        to: "/login",
+        replace: true,
+      });
       setLoading(false);
     } else {
       setLoading(false);
@@ -50,7 +52,7 @@ const AuthGuard = ({ children }: { children: ReactNode }) => {
 };
 
 function App() {
-   useRouteProgress();
+  useRouteProgress();
   const [lang, setLang] = useLocalStorageState("lang", {
     defaultValue: defaultLocale,
     listenStorageChange: true,
@@ -97,10 +99,7 @@ function App() {
       <GlobalContext.Provider value={{ lang, setLang, theme, setTheme }}>
         <ConfigProvider locale={lang === "zh-CN" ? zh_CN : en_US}>
           <AuthGuard>
-            <Routes>
-              <Route path="/*" element={<LayoutPage />} />
-              <Route path="/login" element={<Login />} />
-            </Routes>
+            <Outlet />
           </AuthGuard>
         </ConfigProvider>
       </GlobalContext.Provider>

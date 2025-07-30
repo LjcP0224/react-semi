@@ -1,11 +1,10 @@
-import { Route, Routes } from "react-router";
+import { Outlet } from "@tanstack/react-router";
 import { Layout, Spin } from "@douyinfe/semi-ui";
 import { getRoutes } from "@/api/system";
 
 import Navbar from "@/layout/components/NavBar";
 import React, { Suspense, useEffect, useMemo, useState } from "react";
 
-import NotFoundPage from "@/views/not-found";
 import { isArray } from "es-toolkit/compat";
 type RouteItem = {
   path: string;
@@ -81,23 +80,7 @@ const LayoutPage = () => {
       <Layout className="min-h-screen! min-w-full pt-16">
         <Layout.Content>
           <Suspense fallback={<Spin />}>
-            {flattenRoutes.length == 0 ? (
-              <Spin />
-            ) : (
-              <Routes>
-                {flattenRoutes.map((item, index) => (
-                  <Route
-                    key={index}
-                    index={index === 0}
-                    path={item.path}
-                    element={<item.component />}
-                  />
-                ))}
-
-                {/* 404 页面 */}
-                <Route path="*" element={<NotFoundPage />} />
-              </Routes>
-            )}
+            <Outlet />
           </Suspense>
         </Layout.Content>
         <Layout.Footer
