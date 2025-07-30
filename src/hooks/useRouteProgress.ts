@@ -1,15 +1,13 @@
-import { useLocation } from "@tanstack/react-router";
+import { useRouterState } from "@tanstack/react-router";
 import { startNProgress, doneNProgress } from "@/utils/nprogress";
 import { useEffect } from "react";
 
 export const useRouteProgress = () => {
-  const location = useLocation();
-
+  const state = useRouterState();
   useEffect(() => {
-    // startNProgress();
-    console.log("location.state ==> ", location.state);
-    if (location.state === null || location.state === undefined) {
+    startNProgress();
+    if (state.status === "idle") {
       doneNProgress();
     }
-  }, [location]);
+  }, [state]);
 };
