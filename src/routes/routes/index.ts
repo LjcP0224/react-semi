@@ -1,4 +1,5 @@
 import type { Route } from "@tanstack/react-router";
+import baseRoute from "./base";
 import rootRoute from "../root";
 
 type RouteModule = {
@@ -26,6 +27,8 @@ function formatModules(_modules: RouteModules, result: Route[]) {
 
 const routeTree: Route[] = formatModules(modules, []);
 
-console.log('routeTree ==> ' , routeTree);
+function getRoutes() {
+  rootRoute.addChildren([...baseRoute, ...routeTree]);
+}
 
-export default rootRoute.addChildren(routeTree);
+export { getRoutes };

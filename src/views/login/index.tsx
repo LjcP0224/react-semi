@@ -39,7 +39,7 @@ const LoginForm = () => {
           setToken(result.token);
 
           navigate({
-            to: "/home",
+            to: "/",
           });
         } else {
           Toast.error(message);

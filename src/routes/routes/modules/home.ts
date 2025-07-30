@@ -1,17 +1,10 @@
 import { lazy } from "react";
 import { createRoute } from "@tanstack/react-router";
-import rootRoute from "@/routes/root";
-
-const PageLayout = createRoute({
-  getParentRoute: () => rootRoute,
-  path: "/",
-  component: lazy(() => import("@/layout/index")),
-  notFoundComponent: lazy(() => import("@/views/not-found/index")),
-});
+import PageLayout from "@/layout/layout";
 
 const homeRoute = createRoute({
   getParentRoute: () => PageLayout,
-  path: "/home",
+  path: "/",
   component: lazy(() => import("@/views/home/index")),
 });
 

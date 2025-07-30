@@ -5,6 +5,8 @@ import { getRoutes } from "@/api/system";
 import Navbar from "@/layout/components/NavBar";
 import React, { Suspense, useEffect, useMemo, useState } from "react";
 
+import { getServerRoutes } from "@/routes/server";
+
 import { isArray } from "es-toolkit/compat";
 type RouteItem = {
   path: string;
@@ -63,17 +65,9 @@ const LayoutPage = () => {
 
   useEffect(() => {
     getRoutesData();
+    getServerRoutes();
   }, []);
 
-  const [routes] = useState<RouteItem[]>([
-    {
-      path: "/home",
-      key: "home",
-      component: "views/home/index",
-    },
-  ]);
-  const flattenRoutes = useMemo(() => getFlattenRoutes(routes) || [], [routes]);
-  console.log("flattenRoutes ==> ", flattenRoutes);
   return (
     <Layout className="w-full h-full">
       <Navbar show={true} />

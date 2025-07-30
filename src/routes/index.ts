@@ -1,14 +1,17 @@
 import { createRouter } from "@tanstack/react-router";
 
-import routeTree from "./routes";
+import { getRoutes } from "./routes/index";
+import routeTree from "./root";
 
-
-console.log("routeTree ==> ", routeTree);
+getRoutes();
 
 const router = createRouter({
-  routeTree,
   defaultPreload: "intent",
   scrollRestoration: true,
+});
+
+router.update({
+  routeTree: routeTree,
 });
 
 export default router;
