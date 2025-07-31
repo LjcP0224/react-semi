@@ -4,7 +4,7 @@ import { login } from "@/api/user";
 import { getCaptchaImg } from "@/api/system";
 import type { LoginParams } from "@/api/user";
 import React, { useState } from "react";
-import { useNavigate } from "@tanstack/react-router";
+import { useNavigate, useRouter } from "@tanstack/react-router";
 import { setToken } from "@/utils/auth";
 
 import animationData from "@/assets/lottie/PepeStickerMusic.json";
@@ -13,10 +13,14 @@ import { useMount } from "ahooks";
 
 import Locale from "@/locale/locale";
 
+import routes from "@/routes/server";
+
 const LoginForm = () => {
   const { t } = useTranslation();
 
   const navigate = useNavigate();
+  const router = useRouter();
+
   const [formValue, setFormValue] = useState<LoginParams>({
     username: "",
     password: "",
@@ -37,6 +41,17 @@ const LoginForm = () => {
         const { code, message, result } = res.data;
         if (code == 200) {
           setToken(result.token);
+
+          // 3. 获取当前路由树
+          const currentRouteTree = router.routeTree;
+
+          // 4. 添加新路由到现有路由树
+          const updatedRouteTree = currentRouteTree.addChildren([routes]);
+
+          // 5. 更新路由器
+          router.update({
+            routeTree: updatedRouteTree,
+          });
 
           navigate({
             to: "/",

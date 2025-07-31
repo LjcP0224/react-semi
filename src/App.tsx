@@ -1,6 +1,6 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { Outlet, useNavigate } from "@tanstack/react-router";
-import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
+
 import { ConfigProvider, Spin } from "@douyinfe/semi-ui";
 import { useLocalStorageState } from "ahooks";
 
@@ -19,6 +19,7 @@ import "./App.css";
 // 在单独的文件中创建路由守卫
 const AuthGuard = ({ children }: { children: ReactNode }) => {
   const navigate = useNavigate();
+
   const [loading, setLoading] = useState(true);
 
   const fetchUserInfo = () => {
@@ -101,7 +102,6 @@ function App() {
         <ConfigProvider locale={lang === "zh-CN" ? zh_CN : en_US}>
           <AuthGuard>
             <Outlet />
-            <TanStackRouterDevtools />
           </AuthGuard>
         </ConfigProvider>
       </GlobalContext.Provider>

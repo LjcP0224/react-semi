@@ -3,9 +3,7 @@ import { Layout, Spin } from "@douyinfe/semi-ui";
 import { getRoutes } from "@/api/system";
 
 import Navbar from "@/layout/components/NavBar";
-import React, { Suspense, useEffect, useMemo, useState } from "react";
-
-import { getServerRoutes } from "@/routes/server";
+import React, { Suspense, useEffect } from "react";
 
 import { isArray } from "es-toolkit/compat";
 type RouteItem = {
@@ -65,7 +63,6 @@ const LayoutPage = () => {
 
   useEffect(() => {
     getRoutesData();
-    getServerRoutes();
   }, []);
 
   return (

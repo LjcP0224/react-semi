@@ -25,10 +25,9 @@ function formatModules(_modules: RouteModules, result: Route[]) {
   return result;
 }
 
-const routeTree: Route[] = formatModules(modules, []);
+const tree: Route[] = formatModules(modules, []);
 
-function getRoutes() {
-  rootRoute.addChildren([...baseRoute, ...routeTree]);
-}
+const routeTree = rootRoute.addChildren([...baseRoute, ...tree]);
 
-export { getRoutes };
+export { routeTree };
+export default routeTree;

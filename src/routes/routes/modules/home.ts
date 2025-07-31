@@ -8,6 +8,8 @@ const homeRoute = createRoute({
   component: lazy(() => import("@/views/home/index")),
 });
 
+
+
 // 修改后
 const layoutWithChildren = PageLayout.addChildren([homeRoute]);
 export default layoutWithChildren;
